@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 // var UnusedFilesWebpackPlugin = require("unused-files-webpack-plugin").default;
 
 module.exports = {
-    entry: './media/operators/11/application.tsx',
+    entry: './src/application.tsx',
     devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'release'),
@@ -20,10 +20,10 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'FantasyDraft | Experience Daily Fantasy Sports on a Level Playing Field'
+            title: 'React Boilerplate'
         })
-        // new UnusedFilesWebpackPlugin({
-        //     pattern: 'media/{operators/11,default}/**/*.*'
-        // })
+        new UnusedFilesWebpackPlugin({
+            pattern: 'media/{operators/11,default}/**/*.*'
+        })
     ]
 };
