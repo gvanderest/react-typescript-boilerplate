@@ -1,0 +1,18 @@
+{
+    "args": [
+        "--project"
+    ],
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:all"
+    ],
+    "jsRules": {},
+    "rules": {
+        "indent": [true, "spaces", 4],
+        "no-default-export": false,
+        "no-inferrable-types": false,
+        "variable-name": [true, "check-format", "allow-pascal-case"],
+        "jsdoc-format": true
+    },
+    "rulesDirectory": []
+}

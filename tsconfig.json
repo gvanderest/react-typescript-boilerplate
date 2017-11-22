@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": true,
+        "target": "es6",
+        "allowSyntheticDefaultImports": true,
+        "sourceMap": true,
+        "jsx": "react",
+        "module": "commonjs",
+        "preserveConstEnums": true
+    },
+    "include": [
+        "media"
+    ]
+}
