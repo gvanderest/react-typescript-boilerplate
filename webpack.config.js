@@ -1,7 +1,7 @@
 /*global module, require, __dirname*/
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-// var UnusedFilesWebpackPlugin = require("unused-files-webpack-plugin").default;
+var UnusedFilesWebpackPlugin = require("unused-files-webpack-plugin").default;
 
 module.exports = {
     entry: './src/application.tsx',
