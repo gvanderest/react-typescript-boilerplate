@@ -21,9 +21,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: 'React Boilerplate'
-        })
-        new UnusedFilesWebpackPlugin({
-            pattern: 'media/{operators/11,default}/**/*.*'
-        })
+        }),
+        new UnusedFilesWebpackPlugin()
     ]
 };
