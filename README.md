@@ -64,8 +64,6 @@ be copied elsewhere, or a simple webserver can be used to serve this folder.
 Add support for a few extra features:
 
 * Jest testing
-* Bundle analysis
-* Minified vs Non-Minified
-* Sourcemaps
 * Less/Sass/CSS Compilation
 * Service Worker support
+* Webpack plugins: https://webpack.js.org/plugins/
