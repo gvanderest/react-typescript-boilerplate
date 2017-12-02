@@ -24,6 +24,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "src/static/index.html",
+            hash: true,
             inject: "body"
         }),
         new UnusedFilesWebpackPlugin({
