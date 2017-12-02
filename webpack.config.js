@@ -18,6 +18,9 @@ module.exports = {
             { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
         ]
     },
+    devServer: {
+        historyApiFallback: true
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: "src/static/index.html",
