@@ -6,9 +6,10 @@ interface IProps {
 }
 
 class Example extends React.Component<IProps> {
-    public render() {
+    public render(): JSX.Element {
         const { text } = this.props;
-        return <h1>Example Application: { text }</h1>
+
+        return <h1>Example Application: { text }</h1>;
     }
 }
 

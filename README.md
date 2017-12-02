@@ -5,7 +5,7 @@ following features:
 
 * ReactJS
 * TypeScript
-* TSLint
+* TSLint - Fairly strict rules
 
 
 ## Getting Started
@@ -20,11 +20,13 @@ yarn  # or npm install
 ```
 
 
-
 ## Planned Future Expansions
 
 Add support for a few extra features:
 
+* Jest testing
+* Bundle analysis
 * Minified vs Non-Minified
 * Sourcemaps
 * Less/Sass/CSS Compilation
+* Service Worker support
