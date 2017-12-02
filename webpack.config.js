@@ -20,8 +20,11 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'React Boilerplate'
+            template: "src/static/index.html",
+            inject: "body"
         }),
-        new UnusedFilesWebpackPlugin()
+        new UnusedFilesWebpackPlugin({
+            patterns: 'src/**/*.*'
+        })
     ]
 };
