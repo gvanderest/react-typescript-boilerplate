@@ -63,7 +63,7 @@ be copied elsewhere, or a simple webserver can be used to serve this folder.
 
 Add support for a few extra features:
 
-* Jest testing
 * Less/Sass/CSS Compilation
+* Redux/Thunk Boilerplate
 * Service Worker support
 * Webpack plugins: https://webpack.js.org/plugins/
