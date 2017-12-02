@@ -28,6 +28,7 @@ yarn local
 ```
 
 Then browse to the following address: http://localhost:8080/
+
 If you need hot reloading: http://localhost:8080/webpack-dev-server/
 
 
@@ -42,6 +43,7 @@ yarn localprod
 ```
 
 Then browse to the following address: http://localhost:8080/
+
 If you need hot reloading (slow): http://localhost:8080/webpack-dev-server/
 
 
