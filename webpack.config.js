@@ -6,6 +6,11 @@ var UnusedFilesWebpackPlugin = require("unused-files-webpack-plugin").default;
 var figlet = require("figlet");
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+
+
+var RELEASE_FOLDER = 'release';
+
 
 module.exports = function(env) {
     var production = env && env.production;
@@ -14,6 +19,7 @@ module.exports = function(env) {
     console.log(figlet.textSync(production ? "PRODUCTION" : "development"))
 
     var plugins = [
+        new CleanWebpackPlugin(RELEASE_FOLDER),
         new HtmlWebpackPlugin({
             template: "src/static/index.html",
             hash: true,
@@ -28,7 +34,10 @@ module.exports = function(env) {
         plugins.push(new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('production')
         }));
-        plugins.push(new UglifyJSPlugin());
+        plugins.push(new UglifyJSPlugin({
+            sourceMap: true,
+            parallel: true
+        }));
     } else {
         plugins.push(new BundleAnalyzerPlugin({
             analyzerMode: "static",
@@ -40,7 +49,7 @@ module.exports = function(env) {
         entry: './src/application.tsx',
         devtool: 'source-map',
         output: {
-            path: path.resolve(__dirname, 'release'),
+            path: path.resolve(__dirname, RELEASE_FOLDER),
             filename: 'bundle.js'
         },
         resolve: {
