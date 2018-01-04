@@ -9,7 +9,10 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 
-var RELEASE_FOLDER = 'release';
+var SOURCE_FOLDER = "src";
+var RELEASE_FOLDER = "release";
+var STATIC_FOLDER = SOURCE_FOLDER + "/static";
+var INDEX_HTML_PATH = STATIC_FOLDER + "/index.html";
 
 
 module.exports = function(env) {
@@ -21,12 +24,12 @@ module.exports = function(env) {
     var plugins = [
         new CleanWebpackPlugin(RELEASE_FOLDER),
         new HtmlWebpackPlugin({
-            template: "src/static/index.html",
+            template: INDEX_HTML_PATH,
             hash: true,
             inject: "body"
         }),
         new UnusedFilesWebpackPlugin({
-            patterns: 'src/**/*.*'
+            patterns: SOURCE_FOLDER + '/**/*.*'
         })
     ];
 
@@ -46,7 +49,7 @@ module.exports = function(env) {
     }
 
     return {
-        entry: './src/application.tsx',
+        entry: './' + SOURCE_FOLDER + '/application.tsx',
         devtool: 'source-map',
         output: {
             path: path.resolve(__dirname, RELEASE_FOLDER),
