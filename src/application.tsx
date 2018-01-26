@@ -3,7 +3,7 @@ import "./styles/styles.styl";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-const exodusLogo = require("./images/exodus-logo.png");
+const exodusLogo: string = require("./images/exodus-logo.png");
 
 interface IProps {
     text: string;
