@@ -11,7 +11,7 @@ interface IProps {
 
 interface IState {
     count: number;
-    tickIntervalId: number | undefined;
+    tickIntervalId: number;
 }
 
 class Example extends React.PureComponent<IProps, IState> {
@@ -19,17 +19,17 @@ class Example extends React.PureComponent<IProps, IState> {
         super(props);
         this.state = {
             count: 0,
-            tickIntervalId: undefined,
+            tickIntervalId: 0,
         };
     }
     public componentDidMount(): void {
         const ONE_SECOND: number = 1000;
         this.setState({
-            tickIntervalId: setInterval(this.tick.bind(this), ONE_SECOND),
+            tickIntervalId: window.setInterval(this.tick.bind(this), ONE_SECOND),
         });
     }
     public componentWillUnmount(): void {
-        clearInterval(this.state.tickIntervalId);
+        window.clearInterval(this.state.tickIntervalId);
     }
     public render(): JSX.Element {
         const { text } = this.props;
