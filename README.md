@@ -6,14 +6,15 @@ following features:
 * ReactJS
 * TypeScript
 * TSLint - Fairly strict rules
-
+* Less
+* Stylus
 
 ## Getting Started
 
 Make a copy of this repository to your new project's code folder and install
 its dependencies.
 
-```
+```shell
 git clone git@github.com:gvanderest/react-typescript-boilerplate.git <project>
 cd <project>
 yarn  # or npm install
@@ -23,7 +24,7 @@ yarn  # or npm install
 
 Run the local dev server, which uses webpack-dev-server.
 
-```
+```shell
 yarn local
 ```
 
@@ -38,7 +39,7 @@ Run the local dev server, with all minification/optimization turned on.
 
 NOTE: This is extremely slow, as it processes heavily for performance/minification.
 
-```
+```shell
 yarn localprod
 ```
 
@@ -46,24 +47,20 @@ Then browse to the following address: http://localhost:8080/
 
 If you need hot reloading (slow): http://localhost:8080/webpack-dev-server/
 
-
 ## Build a Release
 
 Run the scripts to generate all the files needed for a release.
 
-```
+```shell
 yarn release
 ```
 
 All of the files will be available in the `/release/` folder, which can then
 be copied elsewhere, or a simple webserver can be used to serve this folder.
 
-
 ## Planned Future Expansions
 
 Add support for a few extra features:
 
-* Less/Sass/CSS Compilation
 * Redux/Thunk Boilerplate
 * Service Worker support
-* Webpack plugins: https://webpack.js.org/plugins/
