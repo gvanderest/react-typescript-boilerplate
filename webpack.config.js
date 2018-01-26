@@ -23,6 +23,12 @@ module.exports = function(env) {
     console.log(figlet.textSync(production ? "PRODUCTION" : "development"))
 
     var extractStyles = new ExtractTextPlugin("styles.css");
+    var cssLoader = {
+        loader: 'css-loader',
+        options: {
+            minimize: production
+        }
+    };
 
     var plugins = [
         new CleanWebpackPlugin(RELEASE_FOLDER),
@@ -70,9 +76,8 @@ module.exports = function(env) {
         module: {
             rules: [
                 { test: /\.tsx?$/i, loader: 'awesome-typescript-loader' },
-                { test: /\.css$/i, use: extractStyles.extract(['css-loader']) },
-                { test: /\.styl$/i, use: extractStyles.extract(['css-loader', 'stylus-loader']) },
-                { test: /\.less$/i, use: extractStyles.extract(['css-loader', 'less-loader']) },
+                { test: /\.css$/i, use: extractStyles.extract([cssLoader]) },
+                { test: /\.styl$/i, use: extractStyles.extract([cssLoader, 'stylus-loader']) },
                 { test: /\.(gif|png|jpe?g|svg)$/i, use: 'file-loader' }
             ]
         },
