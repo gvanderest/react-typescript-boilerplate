@@ -20,6 +20,37 @@ cd <project>
 yarn  # or npm install
 ```
 
+Then just start editing the `src/application.tsx` files and `src/styles/styles.styl` as you wish!
+
+If you want to include images within your TypeScript code, simply:
+
+```typescript
+// load the image from the filesystem
+const exodusLogo: string = require("./images/exodus-logo.png");
+
+// then make use of it somewhere
+return (
+    <img src={ exodusLogo } alt="Exodus Media Inc." />
+);
+```
+
+## Folder Structure
+
+```text
+react-typescript-boilerplate/
+    src/
+        images/
+            exodus-logo.png
+        static/
+            index.html
+        styles/
+            reset.css
+            styles.styl
+        application.tsx
+```
+
+Under the `src` folder you will find the `application.tsx` file which is the main driver of the entire project.  The `static` folder inside contains all of the static assets that will be copied directly to the root folder of the webserver when building or running the local webserver.
+
 ## Local Development
 
 Run the local dev server, which uses webpack-dev-server.
