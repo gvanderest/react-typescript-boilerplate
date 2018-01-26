@@ -15,6 +15,7 @@
         "jsdoc-format": true,
         "no-import-side-effect": false,
         "no-var-requires": false,
+        "no-require-imports": false
     },
     "rulesDirectory": []
 }
