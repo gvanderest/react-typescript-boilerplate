@@ -56,27 +56,18 @@ Under the `src` folder you will find the `application.tsx` file which is the mai
 Run the local dev server, which uses webpack-dev-server.
 
 ```shell
-yarn local
+yarn local  # for local webserver development
+# or ..
+yarn localprod  # for local testing of production release
 ```
 
 Then browse to the following address: http://localhost:8080/
 
 If you need hot reloading: http://localhost:8080/webpack-dev-server/
 
+Note: If you are running the production version, it will be minifying code, which can take a lot more processing and be slow to hot reload.
 
-## Local Release Testing
-
-Run the local dev server, with all minification/optimization turned on.
-
-NOTE: This is extremely slow, as it processes heavily for performance/minification.
-
-```shell
-yarn localprod
-```
-
-Then browse to the following address: http://localhost:8080/
-
-If you need hot reloading (slow): http://localhost:8080/webpack-dev-server/
+If you want to analyze the bundle being generated (only available in development mode): http://localhost:8081/
 
 ## Build a Release
 

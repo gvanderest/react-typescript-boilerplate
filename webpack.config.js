@@ -53,7 +53,8 @@ module.exports = function(env) {
         }));
     } else {
         plugins.push(new BundleAnalyzerPlugin({
-            analyzerMode: "static",
+            analyzerMode: "server",
+            analyzerPort: 8081,
             openAnalyzer: false
         }));
     }
