@@ -7,6 +7,7 @@ var figlet = require("figlet");
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var CleanWebpackPlugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 
 var SOURCE_FOLDER = "src";
@@ -21,6 +22,8 @@ module.exports = function(env) {
     console.log("Building for..")
     console.log(figlet.textSync(production ? "PRODUCTION" : "development"))
 
+    var extractStyles = new ExtractTextPlugin("styles.css");
+
     var plugins = [
         new CleanWebpackPlugin(RELEASE_FOLDER),
         new HtmlWebpackPlugin({
@@ -30,7 +33,8 @@ module.exports = function(env) {
         }),
         new UnusedFilesWebpackPlugin({
             patterns: SOURCE_FOLDER + '/**/*.*'
-        })
+        }),
+        extractStyles
     ];
 
     if (production) {
@@ -56,11 +60,20 @@ module.exports = function(env) {
             filename: 'bundle.js'
         },
         resolve: {
-            extensions: ['.js', '.jsx', '.ts', '.tsx']
+            extensions: [
+                '.js', '.jsx',
+                '.ts', '.tsx',
+                '.css', '.styl', '.less',
+                '.gif', '.png', '.jpeg', '.jpg', '.svg'
+            ]
         },
         module: {
             rules: [
-                { test: /\.tsx?$/, loader: 'awesome-typescript-loader' }
+                { test: /\.tsx?$/i, loader: 'awesome-typescript-loader' },
+                { test: /\.css$/i, use: extractStyles.extract(['css-loader']) },
+                { test: /\.styl$/i, use: extractStyles.extract(['css-loader', 'stylus-loader']) },
+                { test: /\.less$/i, use: extractStyles.extract(['css-loader', 'less-loader']) },
+                { test: /\.(gif|png|jpe?g|svg)$/i, use: 'file-loader' }
             ]
         },
         devServer: {
