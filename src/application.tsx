@@ -15,7 +15,7 @@ class Example extends React.Component<IProps> {
 
         return (
             <div>
-                <img src={ exodusLogo } />
+                <p><img src={ exodusLogo } /></p>
                 <h1>Example Application: { text }</h1>
             </div>
         );
