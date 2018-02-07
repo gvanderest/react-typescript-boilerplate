@@ -2,10 +2,20 @@ import "./styles/styles.styl";
 
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { IDuck } from "./ducks/ducks";
+import { connect, store } from "./redux";
+import { IReduxStore } from "./settings";
 
 const exodusLogo: string = require("./images/exodus-logo.png");
 
 interface IProps {
+    actions: {
+        ducks: {
+            createDuck(duck: IDuck): void;
+        };
+    };
+    store: IReduxStore;
     text: string;
 }
 
@@ -27,6 +37,10 @@ class Example extends React.PureComponent<IProps, IState> {
         this.setState({
             tickIntervalId: window.setInterval(this.tick.bind(this), ONE_SECOND),
         });
+        this.props.actions.ducks.createDuck({
+            id: String(Math.random()),
+            name: "Quackers",
+        });
     }
     public componentWillUnmount(): void {
         window.clearInterval(this.state.tickIntervalId);
@@ -38,7 +52,9 @@ class Example extends React.PureComponent<IProps, IState> {
         return (
             <div>
                 <p><img src={ exodusLogo } /></p>
-                <h1>Example Application: { text } - { count }</h1>
+                <p>Example Application: { text } - { count }</p>
+                <p>Redux Store:</p>
+                <pre className="store-json">{ JSON.stringify(this.props.store, undefined, "    ") }</pre>
             </div>
         );
     }
@@ -51,4 +67,11 @@ class Example extends React.PureComponent<IProps, IState> {
     }
 }
 
-ReactDOM.render(<Example text="Hello World" />, document.getElementById("application"));
+const ConnectedExample = connect(Example);
+
+ReactDOM.render(
+    <Provider store={ store }>
+        <ConnectedExample text="Hello World" />
+    </Provider>,
+    document.getElementById("application"),
+);

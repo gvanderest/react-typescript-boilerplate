@@ -15,7 +15,17 @@
         "jsdoc-format": true,
         "no-import-side-effect": false,
         "no-var-requires": false,
-        "no-require-imports": false
+        "no-require-imports": false,
+        "only-arrow-functions": false,
+        "typedef": [
+            true,
+            "call-signature",
+            "arrow-call-signature",
+            "parameter",
+            "arrow-parameter",
+            "property-declaration",
+            "member-variable-declaration"
+        ]
     },
     "rulesDirectory": []
 }

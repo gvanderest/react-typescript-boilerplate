@@ -17,6 +17,6 @@
         "preserveConstEnums": true
     },
     "include": [
-        "media"
+        "src/**/*"
     ]
 }
