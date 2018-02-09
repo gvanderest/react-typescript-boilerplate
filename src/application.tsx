@@ -40,10 +40,6 @@ class Example extends React.PureComponent<IProps, IState> {
         this.setState({
             tickIntervalId: window.setInterval(this.tick.bind(this), ONE_SECOND),
         });
-        this.props.actions.ducks.createDuck({
-            id: String(Math.random()),
-            name: "Quackers",
-        });
     }
     public componentWillUnmount(): void {
         window.clearInterval(this.state.tickIntervalId);
@@ -55,10 +51,17 @@ class Example extends React.PureComponent<IProps, IState> {
         return (
             <div>
                 <p>Example Application: { text } - { count }</p>
+                <p><button type="button" onClick={ this.addDuck.bind(this) }>Add a Duck</button></p>
                 <p>Redux Store:</p>
                 <pre className="store-json">{ JSON.stringify(this.props.store, undefined, "    ") }</pre>
             </div>
         );
+    }
+    protected addDuck(): void {
+        this.props.actions.ducks.createDuck({
+            id: String(Math.random()),
+            name: "Quackers",
+        });
     }
     protected tick(): void {
         const { count } = this.state;
