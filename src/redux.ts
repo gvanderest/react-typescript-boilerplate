@@ -1,11 +1,31 @@
+import createHistory from "history/createBrowserHistory";
 import { connect as reduxConnect } from "react-redux";
-import { applyMiddleware, bindActionCreators, combineReducers, createStore, Dispatch, Store } from "redux";
+import { routerMiddleware, routerReducer } from "react-router-redux";
+import { applyMiddleware, bindActionCreators, combineReducers, compose, createStore, Dispatch, Store } from "redux";
 import thunk from "redux-thunk";
 import { IReduxStore, reduxActions, reduxReducers } from "./settings";
 
+export const history = createHistory();
+
+export interface IWindowWithDevTools extends Window {
+    __REDUX_DEVTOOLS_EXTENSION__(): () => {};
+}
+
+const reduxWindow = window as IWindowWithDevTools;
+const reduxDevtools = reduxWindow.__REDUX_DEVTOOLS_EXTENSION__ && reduxWindow.__REDUX_DEVTOOLS_EXTENSION__();
+
 export const store: Store<{}> = createStore(
-    combineReducers(reduxReducers),
-    applyMiddleware(thunk),
+    combineReducers({
+        ...reduxReducers,
+        routing: routerReducer,
+    }),
+    compose(
+        applyMiddleware(
+            thunk,
+            routerMiddleware(history),
+        ),
+        reduxDevtools,
+    ),
 );
 
 export interface IStore {

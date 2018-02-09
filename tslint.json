@@ -25,7 +25,8 @@
             "arrow-parameter",
             "property-declaration",
             "member-variable-declaration"
-        ]
+        ],
+        "no-submodule-imports": false
     },
     "rulesDirectory": []
 }

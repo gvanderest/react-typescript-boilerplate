@@ -3,11 +3,14 @@ import "./styles/styles.styl";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { Provider } from "react-redux";
+import { Route } from "react-router";
+import { Link } from "react-router-dom";
+import { ConnectedRouter } from "react-router-redux";
 import { IDuck } from "./ducks/ducks";
-import { connect, store } from "./redux";
+import { connect, history, store } from "./redux";
 import { IReduxStore } from "./settings";
 
-const exodusLogo: string = require("./images/exodus-logo.png");
+const exodusLogo = require("./images/exodus-logo.png");
 
 interface IProps {
     actions: {
@@ -51,7 +54,6 @@ class Example extends React.PureComponent<IProps, IState> {
 
         return (
             <div>
-                <p><img src={ exodusLogo } /></p>
                 <p>Example Application: { text } - { count }</p>
                 <p>Redux Store:</p>
                 <pre className="store-json">{ JSON.stringify(this.props.store, undefined, "    ") }</pre>
@@ -71,7 +73,14 @@ const ConnectedExample = connect(Example);
 
 ReactDOM.render(
     <Provider store={ store }>
-        <ConnectedExample text="Hello World" />
+        <ConnectedRouter history={ history }>
+            <div>
+                <p><img src={ exodusLogo } /></p>
+                <p><Link to="/">Index</Link> - <Link to="/example">Example</Link></p>
+                <Route exact path="/" render={ (): JSX.Element => (<ConnectedExample text="Hello World!" />) } />
+                <Route exact path="/example" render={ (): JSX.Element => (<div>Example Content</div>) } />
+            </div>
+        </ConnectedRouter>
     </Provider>,
     document.getElementById("application"),
 );
