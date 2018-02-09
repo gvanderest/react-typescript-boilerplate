@@ -8,6 +8,7 @@ following features:
 * TSLint - Fairly strict rules
 * Less
 * Stylus
+* Redux/Thunk Boilerplate
 
 ## Getting Started
 
@@ -39,6 +40,8 @@ return (
 ```text
 react-typescript-boilerplate/
     src/
+        ducks/
+            ducks.ts
         images/
             exodus-logo.png
         static/
@@ -47,6 +50,7 @@ react-typescript-boilerplate/
             reset.css
             styles.styl
         application.tsx
+        redux.ts
 ```
 
 Under the `src` folder you will find the `application.tsx` file which is the main driver of the entire project.  The `static` folder inside contains all of the static assets that will be copied directly to the root folder of the webserver when building or running the local webserver.
@@ -84,5 +88,4 @@ be copied elsewhere, or a simple webserver can be used to serve this folder.
 
 Add support for a few extra features:
 
-* Redux/Thunk Boilerplate
-* Service Worker support
+* Service Worker support?
