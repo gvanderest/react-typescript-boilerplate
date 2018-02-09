@@ -71,11 +71,14 @@ class Example extends React.PureComponent<IProps, IState> {
 
 const ConnectedExample = connect(Example);
 
+const LOGO_WIDTH = 400;
+const LOGO_HEIGHT = 41;
+
 ReactDOM.render(
     <Provider store={ store }>
         <ConnectedRouter history={ history }>
             <div>
-                <p><img src={ exodusLogo } /></p>
+                <p><img src={ exodusLogo } width={ LOGO_WIDTH } height={ LOGO_HEIGHT } /></p>
                 <p><Link to="/">Index</Link> - <Link to="/example">Example</Link></p>
                 <Route exact path="/" render={ (): JSX.Element => (<ConnectedExample text="Hello World!" />) } />
                 <Route exact path="/example" render={ (): JSX.Element => (<div>Example Content</div>) } />
