@@ -86,7 +86,7 @@ module.exports = function(env) {
                     "file-loader",
                     {
                         loader: "image-webpack-loader",
-                        options: {
+                        options: production ? {
                             mozjpeg: {
                                 progressive: true,
                                 quality: 65
@@ -106,7 +106,7 @@ module.exports = function(env) {
                             webp: {
                                 quality: 75
                             }
-                        }
+                        } : {}
                     }
                 ] }
             ]
