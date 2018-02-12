@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 
-export const DUCK_CREATED: string = "react-typescript-boilerplate/ducks/CREATED";
+export const DUCK_CREATED: string = "ducks/CREATED";
 
 export interface IState {
     byId: {
