@@ -17,7 +17,8 @@
     "collectCoverageFrom": [
       "**/*.{js,jsx,ts,tsx}",
       "!**/node_modules/**",
-      "!**/vendor/**"
+      "!**/vendor/**",
+      "!**/bypass-*/**"
     ],
     "moduleFileExtensions": [
       "ts",
