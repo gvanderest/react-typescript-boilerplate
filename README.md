@@ -9,6 +9,8 @@ following features:
 * Less
 * Stylus
 * Redux/Thunk Boilerplate
+* Image Optimizations
+* Jest Unit Testing
 
 ## Getting Started
 
