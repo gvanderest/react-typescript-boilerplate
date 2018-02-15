@@ -9,7 +9,7 @@ import { Reducer } from "redux";
  *
  * See: https://www.npmjs.com/package/history for more examples.
  */
-export const historyCreationFunction = history.createHashHistory;
+export const historyCreationFunction = history.createBrowserHistory;
 
 /**
  * REDUX
