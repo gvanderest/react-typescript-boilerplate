@@ -30,7 +30,7 @@ interface IState {
     tickIntervalId: number;
 }
 
-class Example extends React.PureComponent<IProps, IState> {
+class Example extends React.Component<IProps, IState> {
     public constructor(props: IProps) {
         super(props);
         this.state = {
