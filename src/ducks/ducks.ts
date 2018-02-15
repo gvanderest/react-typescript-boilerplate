@@ -1,6 +1,7 @@
 import { AnyAction } from "redux";
 
-export const DUCK_CREATED: string = "ducks/CREATED";
+export const CREATE_DUCK: string = "CREATE_DUCK";
+export const REMOVE_DUCK: string = "REMOVE_DUCK";
 
 export interface IState {
     byId: {
@@ -17,18 +18,29 @@ const initialState: IState = {
     byId: {},
 };
 
-interface IHandleCreatedAction extends AnyAction {
+interface IHandleCreateAction extends AnyAction {
+    duck: IDuck;
+}
+
+interface IHandleRemoveAction extends AnyAction {
     duck: IDuck;
 }
 
 export function createDuck(duck: IDuck): AnyAction {
     return {
         duck,
-        type: DUCK_CREATED,
+        type: CREATE_DUCK,
     };
 }
 
-function reduceDuckCreated(state: IState, action: IHandleCreatedAction): IState {
+export function removeDuck(duckId: string): AnyAction {
+    return {
+        duckId,
+        type: REMOVE_DUCK,
+    };
+}
+
+function reduceCreateDuck(state: IState, action: IHandleCreateAction): IState {
     const { duck } = action;
 
     return {
@@ -40,8 +52,21 @@ function reduceDuckCreated(state: IState, action: IHandleCreatedAction): IState 
     };
 }
 
+function reduceRemoveDuck(state: IState, action: IHandleRemoveAction): IState {
+    const { duckId } = action;
+
+    const byId: { [key: string]: IDuck } = { ...state.byId };
+    delete byId[duckId];
+
+    return {
+        ...state,
+        byId,
+    };
+}
+
 export const ducksActions = {
     createDuck,
+    removeDuck,
 };
 
 export default function ducksReducer(state: IState, action: AnyAction): IState {
@@ -49,8 +74,10 @@ export default function ducksReducer(state: IState, action: AnyAction): IState {
         return initialState;
     }
     switch (action.type) {
-        case DUCK_CREATED:
-            return reduceDuckCreated(state, action as IHandleCreatedAction);
+        case CREATE_DUCK:
+            return reduceCreateDuck(state, action as IHandleCreateAction);
+        case REMOVE_DUCK:
+            return reduceRemoveDuck(state, action as IHandleRemoveAction);
         default:
             return state;
     }

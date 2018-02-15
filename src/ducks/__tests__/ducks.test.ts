@@ -1,4 +1,4 @@
-import reducer, { DUCK_CREATED } from "../ducks";
+import reducer, { createDuck } from "../ducks";
 
 describe("example", () => {
     it("should test", () => {
@@ -9,7 +9,7 @@ describe("example", () => {
             id: "123",
             name: "Hello Duck",
         };
-        const reduced = reducer(store, { type: DUCK_CREATED, duck: before });
+        const reduced = reducer(store, createDuck(before));
         expect(reduced).toEqual({
             byId: {
                 123: {

@@ -6,6 +6,7 @@ interface IProps {
     actions: {
         ducks: {
             createDuck(duck: IDuck): void;
+            removeDuck(duckId: string): void;
         };
         router: {
             push(url: string): void;
@@ -61,6 +62,7 @@ export default class Example extends React.Component<IProps, IState> {
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
+                                <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -68,9 +70,14 @@ export default class Example extends React.Component<IProps, IState> {
                                 const duck = ducks[duckId];
 
                                 return (
-                                    <tr>
+                                    <tr key={ duck.id }>
                                         <td>{ duck.id }</td>
                                         <td>{ duck.name }</td>
+                                        <td>
+                                            <button type="button" onClick={ this.removeDuck.bind(this, duck) }>
+                                                Remove
+                                            </button>
+                                        </td>
                                     </tr>
                                 );
                             }) }
@@ -90,6 +97,9 @@ export default class Example extends React.Component<IProps, IState> {
     }
     protected redirectToExample(): void {
         this.props.actions.router.push("/example/");
+    }
+    protected removeDuck(duck: IDuck): void {
+        this.props.actions.ducks.removeDuck(duck.id);
     }
     protected tick(): void {
         const { count } = this.state;
