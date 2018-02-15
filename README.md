@@ -3,14 +3,27 @@
 This is an attempt at facilitating the starting of a new project with the
 following features:
 
-* ReactJS
-* TypeScript
-* TSLint - Fairly strict rules
-* Less
-* Stylus
-* Redux/Thunk Boilerplate
-* Image Optimizations
-* Jest Unit Testing
+* Basic Technologies
+  * TypeScript
+  * ReactJS
+  * Redux
+  * React-Router with Redux Integration
+    * Options between hash and browser routing
+* Styling
+  * LessCSS support
+  * Stylus support
+  * Image importing
+* Examples
+  * Example Startup
+  * Redux/Thunk Example
+* Performance
+  * Image Optimization
+  * JS Minification
+  * CSS Minification
+* Linting
+  * TSLint
+* Testing
+  * Jest Unit Testing
 
 ## Getting Started
 
