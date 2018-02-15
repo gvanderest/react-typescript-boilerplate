@@ -1,7 +1,7 @@
 import { AnyAction } from "redux";
 
-export const CREATE_DUCK: string = "CREATE_DUCK";
-export const REMOVE_DUCK: string = "REMOVE_DUCK";
+export const CREATE_DUCK: string = "ducks/CREATE_DUCK";
+export const REMOVE_DUCK: string = "ducks/REMOVE_DUCK";
 
 export interface IState {
     byId: {
