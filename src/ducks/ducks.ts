@@ -3,15 +3,15 @@ import { AnyAction } from "redux";
 export const CREATE_DUCK: string = "ducks/CREATE_DUCK";
 export const REMOVE_DUCK: string = "ducks/REMOVE_DUCK";
 
+export interface IDuck {
+    id: string;
+    name: string;
+}
+
 export interface IState {
     byId: {
         [key: string]: IDuck;
     };
-}
-
-export interface IDuck {
-    id: string;
-    name: string;
 }
 
 const initialState: IState = {
@@ -22,21 +22,10 @@ interface IHandleCreateAction extends AnyAction {
     duck: IDuck;
 }
 
-interface IHandleRemoveAction extends AnyAction {
-    duck: IDuck;
-}
-
 export function createDuck(duck: IDuck): AnyAction {
     return {
         duck,
         type: CREATE_DUCK,
-    };
-}
-
-export function removeDuck(duckId: string): AnyAction {
-    return {
-        duckId,
-        type: REMOVE_DUCK,
     };
 }
 
@@ -49,6 +38,17 @@ function reduceCreateDuck(state: IState, action: IHandleCreateAction): IState {
             ...state.byId,
             [duck.id]: { ...duck },
         },
+    };
+}
+
+interface IHandleRemoveAction extends AnyAction {
+    duck: IDuck;
+}
+
+export function removeDuck(duckId: string): AnyAction {
+    return {
+        duckId,
+        type: REMOVE_DUCK,
     };
 }
 
@@ -73,6 +73,7 @@ export default function ducksReducer(state: IState, action: AnyAction): IState {
     if (!state) {
         return initialState;
     }
+
     switch (action.type) {
         case CREATE_DUCK:
             return reduceCreateDuck(state, action as IHandleCreateAction);
