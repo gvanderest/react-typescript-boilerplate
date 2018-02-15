@@ -1,11 +1,10 @@
-import createHistory from "history/createBrowserHistory";
 import { connect as reduxConnect } from "react-redux";
 import { push, routerMiddleware, routerReducer } from "react-router-redux";
 import { applyMiddleware, bindActionCreators, combineReducers, compose, createStore, Dispatch, Store } from "redux";
 import thunk from "redux-thunk";
-import { IReduxStore, reduxActions, reduxReducers } from "./settings";
+import { historyCreationFunction, IReduxStore, reduxActions, reduxReducers } from "./settings";
 
-export const history = createHistory();
+export let history = historyCreationFunction();
 
 export interface IWindowWithDevTools extends Window {
     __REDUX_DEVTOOLS_EXTENSION__(): () => {};
@@ -17,16 +16,19 @@ const reduxDevtools = reduxWindow.__REDUX_DEVTOOLS_EXTENSION__ && reduxWindow.__
 export const store: Store<{}> = createStore(
     combineReducers({
         ...reduxReducers,
-        routing: routerReducer,
+        router: routerReducer,
     }),
+    {},
     compose(
-        reduxDevtools,
         applyMiddleware(
             routerMiddleware(history),
             thunk,
         ),
+        reduxDevtools,
     ),
 );
+
+
 
 export interface IStore {
     store: IReduxStore;
@@ -46,11 +48,11 @@ function mapDispatchToProps(dispatch: Dispatch<IStore>): { actions: typeof redux
         },
     };
 
-    for (const name in reduxActions) {
+    for (const name in boundActionCreators) {
         if (!name) {
             continue;
         }
-        boundActionCreators[name] = bindActionCreators(reduxActions[name], dispatch);
+        boundActionCreators[name] = bindActionCreators(boundActionCreators[name], dispatch);
     }
 
     return {
