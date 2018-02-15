@@ -1,6 +1,6 @@
 import createHistory from "history/createBrowserHistory";
 import { connect as reduxConnect } from "react-redux";
-import { routerMiddleware, routerReducer } from "react-router-redux";
+import { push, routerMiddleware, routerReducer } from "react-router-redux";
 import { applyMiddleware, bindActionCreators, combineReducers, compose, createStore, Dispatch, Store } from "redux";
 import thunk from "redux-thunk";
 import { IReduxStore, reduxActions, reduxReducers } from "./settings";
@@ -20,11 +20,11 @@ export const store: Store<{}> = createStore(
         routing: routerReducer,
     }),
     compose(
-        applyMiddleware(
-            thunk,
-            routerMiddleware(history),
-        ),
         reduxDevtools,
+        applyMiddleware(
+            routerMiddleware(history),
+            thunk,
+        ),
     ),
 );
 
@@ -39,7 +39,12 @@ function mapStateToProps(state: IReduxStore): IStore {
 }
 
 function mapDispatchToProps(dispatch: Dispatch<IStore>): { actions: typeof reduxActions } {
-    const boundActionCreators: { [key: string]: {} } = { ...reduxActions };
+    const boundActionCreators: { [key: string]: {} } = {
+        ...reduxActions,
+        router: {
+            push,
+        },
+    };
 
     for (const name in reduxActions) {
         if (!name) {

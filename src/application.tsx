@@ -17,6 +17,9 @@ interface IProps {
         ducks: {
             createDuck(duck: IDuck): void;
         };
+        router: {
+            push(url: string): void;
+        };
     };
     store: IReduxStore;
     text: string;
@@ -52,6 +55,7 @@ class Example extends React.PureComponent<IProps, IState> {
             <div>
                 <p>Example Application: { text } - { count }</p>
                 <p><button type="button" onClick={ this.addDuck.bind(this) }>Add a Duck</button></p>
+                <p><button type="button" onClick={ this.redirectToExample.bind(this) }>Use Router Push</button></p>
                 <p>Redux Store:</p>
                 <pre className="store-json">{ JSON.stringify(this.props.store, undefined, "    ") }</pre>
             </div>
@@ -62,6 +66,9 @@ class Example extends React.PureComponent<IProps, IState> {
             id: String(Math.random()),
             name: "Quackers",
         });
+    }
+    protected redirectToExample(): void {
+        this.props.actions.router.push("/example/");
     }
     protected tick(): void {
         const { count } = this.state;
