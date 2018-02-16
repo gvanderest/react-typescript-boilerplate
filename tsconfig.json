@@ -11,12 +11,19 @@
         "removeComments": true,
         "target": "es6",
         "allowSyntheticDefaultImports": true,
+        "pretty": true,
         "sourceMap": true,
         "jsx": "react",
-        "module": "commonjs",
-        "preserveConstEnums": true
+        "preserveConstEnums": true,
+        "moduleResolution": "node",
+        "module": "ESNext"
     },
     "include": [
         "src/**/*"
-    ]
+    ],
+    "awesomeTypescriptLoaderOptions": {
+        "useCache": true,
+        "useTranspileModule": true,
+        "forceIsolatedModules": true
+    }
 }
