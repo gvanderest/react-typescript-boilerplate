@@ -10,7 +10,8 @@
     "test": "./node_modules/jest/bin/jest.js --coverage",
     "test-directives": "karma start karma-directives.conf.js --single-run",
     "test-once": "karma start --single-run",
-    "test-directives-once": "karma start karma-directives.conf.js --single-run"
+    "test-directives-once": "karma start karma-directives.conf.js --single-run",
+    "lint": "tsc --noEmit"
   },
   "jest": {
     "coverageDirectory": "bypass-coverage",
